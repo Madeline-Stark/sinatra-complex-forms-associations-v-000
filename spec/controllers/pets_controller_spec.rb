@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe "Pets Controller" do
   describe "new action" do
@@ -92,6 +93,7 @@ describe "Pets Controller" do
       @adam = Owner.create(:name => "Adam")
       visit "/pets/#{@pet.id}/edit"
       choose(@adam.id)
+      binding.pry
       click_button "Update Pet"
       expect(Pet.last.owner.name).to eq("Adam")
     end
