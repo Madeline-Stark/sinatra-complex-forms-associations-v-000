@@ -42,11 +42,11 @@ class PetsController < ApplicationController
       binding.pry
       @owner = Owner.create(name: params["owner"]["name"])
       @owner.pets << @pet #can't just save @pet.owner, need to tell owner about it
-      @pet.owner_id = owner.id
+      @pet.owner_id = @owner.id
     else
       @owner = Owner.find(params["owner"]["id"])
       @owner.pets << @pet
-      @pet.owner_id = owner.id
+      @pet.owner_id = @owner.id
     end
     @pet.update
     redirect to "pets/#{@pet.id}"
